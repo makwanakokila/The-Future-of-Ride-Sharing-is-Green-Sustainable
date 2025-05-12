@@ -27,37 +27,37 @@ const ServiceSection = () => {
             icon: <Bike size={32} />,
             title: "Bike Ride",
             description: "Quick & affordable bike rides",
-            image: "https://images.unsplash.com/photo-1543168256-418811576931?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+            image: "/images/Home-Page2.png"
         },
         {
             icon: <Car size={32} />,
             title: "Car Ride",
             description: "Comfortable sedans for daily commute",
-            image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+            image: "/images/Home-Page3.png"
         },
         {
             icon: <Truck size={32} />,
             title: "Auto Ride",
             description: "Convenient three-wheeler auto rides",
-            image: "https://ethnomarginalia.com/wp-content/uploads/2021/03/img_4461_original.jpg?w=1600&h=600&crop=1"
+            image: "/images/Home-Page4.png"
         },
         {
             icon: <Package size={32} />,
             title: "Courier Delivery",
             description: "Fast & secure package delivery",
-            image: "	https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+            image: "/images/Home-Page5.png"
         },
         {
             icon: <UtensilsCrossed size={32} />,
             title: "Food Delivery",
             description: "Deliver food from restaurants to doorstep",
-            image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+            image: "/images/Home-Page6.png"
         },
         {
             icon: <ShoppingBag size={32} />,
             title: "Grocery Delivery",
             description: "Convenient grocery delivery to your home",
-            image: "https://images.unsplash.com/photo-1543168256-418811576931?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80"
+            image: "/images/Home-Page7.png"
         }
     ];
 

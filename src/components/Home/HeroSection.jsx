@@ -68,7 +68,7 @@ const HeroSection = () => {
             {/* 🌄 Image Block */}
             <div className="relative rounded-xl overflow-hidden shadow-lg z-10">
               <img
-                src="https://images.unsplash.com/photo-1546614042-7df3c24c9e5d?w=800&auto=format&fit=crop&q=60"
+                src="/images/home_page1.png"
                 alt="Luxury car"
                 className="object-cover w-full h-[600px]"
               />

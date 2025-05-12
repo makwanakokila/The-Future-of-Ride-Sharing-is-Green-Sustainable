@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
-import { Menu, Moon, Sun, Globe, X, Mail, Phone, Link } from "lucide-react";
+import { Menu, Moon, Sun, Globe, X, Mail, Phone } from "lucide-react";
 import Logo from "./Logo";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -125,12 +126,12 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="font-medium hover:text-green-400 transition-colors"
               >
                 Home
-              </a>
+              </Link>
               <div className="relative">
                 <button
                   className="flex items-center font-medium hover:text-green-400 transition-colors"
@@ -156,57 +157,52 @@ const Header = () => {
                 </button>
                 {servicesOpen && (
                   <div className="absolute left-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 z-50">
-                    <a
-                      href="#"
+                    <Link
+                      to="/carrides"
                       className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors"
                     >
-                      Bike Ride
-                    </a>
-                    <a
-                      href="#"
+                      Car Rides
+                    </Link>
+                    <Link
+                      to="/rentals"
                       className="block px-4 py-2 hover:bg-green-200  dark:hover:bg-green-700  transition-colors"
                     >
-                      Car Ride
-                    </a>
-                    <a
-                      href="#"
+                      Rentals
+                    </Link>
+                    <Link
+                      to="/Auto_rides"
                       className="block px-4 py-2 hover:bg-green-200  dark:hover:bg-green-700 transition-colors"
                     >
-                      Auto Ride
-                    </a>
-                    <a
-                      href="#"
+                      Auto Rides
+                    </Link>
+                    <Link
+                      to="/Bike_rides"
                       className="block px-4 py-2 hover:bg-green-200  dark:hover:bg-green-700  transition-colors"
                     >
-                      Courier Delivery
-                    </a>
-                    <a
-                      href="#"
+                      Bike_Rides
+                    </Link>
+                    <Link
+                      to="/Intercity"
                       className="block px-4 py-2 hover:bg-green-200  dark:hover:bg-green-700 transition-colors"
                     >
-                      Food Delivery
-                    </a>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-green-200  dark:hover:bg-green-700 transition-colors"
-                    >
-                      Grocery Delivery
-                    </a>
+                      Intercity
+                    </Link>
                   </div>
                 )}
               </div>
-              <a
-                href="#"
+
+              <Link
+                to="#"
                 className="font-medium hover:text-green-400 transition-colors"
               >
                 Safety
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/about"
                 className="font-medium hover:text-green-400 transition-colors"
               >
                 About
-              </a>
+              </Link>
               <div className="relative">
                 <button
                   className="flex items-center font-medium hover:text-green-400 transition-colors"
@@ -272,20 +268,21 @@ const Header = () => {
               >
                 <Globe size={20} />
               </button>
- {/*dark:border-gray-700 hover:border-[#0F5729] hover:bg-[#0F5729] hover:text-white bg-white text-black border-gray-300 dark:text-white */}
-              <a
-  href="#"
-  className="bg-white  dark:bg-[#0F141B] dark:hover:bg-[#0F5729] dark:text-white font-medium px-4 py-2 rounded-md transition-colors border border-gray dark:border-gray-700 hover:border-[#0F5729] hover:bg-[#0F5729] hover:text-white"
-  style={{ borderWidth: '1px' }}
->
-  Login
-</a>
-              <a
-                href="#"
-                className="bg-green-500 text-white font-medium px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+
+              <Link
+                to={"/login"}
+                className="bg-white  dark:bg-[#0F141B] dark:hover:bg-[#0F5729] dark:text-white font-medium px-4 py-2 rounded-md transition-colors border border-gray dark:border-gray-700 hover:border-[#0F5729] hover:bg-[#0F5729] hover:text-white"
+                style={{ borderWidth: "1px" }}
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/signup"
+                className="w-full bg-green-500 text-white font-medium px-4 py-2 rounded-md text-center hover:bg-green-600 transition-colors"
               >
                 Sign Up
-              </a>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -414,20 +411,19 @@ const Header = () => {
             </div>
 
             <div className="flex flex-col space-y-3 mt-4">
-          
-            <a
-                href="#"
+              <Link
+                to={"/login"}
                 className="text-black dark:text-white font-medium px-4 py-2 rounded-md border-gray-300 transition-colors"
               >
                 Login
-              </a>
+              </Link>
 
-              <a
-                href="#"
+              <Link
+                to="/signup"
                 className="w-full bg-green-500 text-white font-medium px-4 py-2 rounded-md text-center hover:bg-green-600 transition-colors"
               >
                 Sign Up
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

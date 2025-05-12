@@ -33,7 +33,7 @@ const DownloadAppSection = () => {
                 <div className="text-green-400 text-xs">ETA: 3 minutes</div>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2070&auto=format&fit=crop"
+                src="/images/Home-Page9.png"
                 alt="IdharUdhar App"
                 className="rounded-lg shadow-2xl w-full border-4 border-black dark:border-gray-700"
                 style={{
@@ -101,16 +101,16 @@ const DownloadAppSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="#" className="transition-transform hover:scale-105">
                 <img
-                  src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                  src="/images/Home-icon1.png"
                   alt="Get it on Google Play"
-                  className="h-[85px] w-[80]"
+                  className="h-[60px] w-[20]"
                 />
               </a>
               <a href="#" className="transition-transform hover:scale-105">
                 <img
-                  src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"
+                  src="/images/Home-icon2.png"
                   alt="Download on the App Store"
-                  className="h-[60px] w-[60] mt-3"
+                  className="h-[60px] w-[60] "
                 />
               </a>
             </div>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Car, Bike, Truck, Clock, Package } from 'lucide-react';
 
-const ChooseRideSection: React.FC = () => {
+const ChooseRideSection = () => {
   const rides = [
     {
       title: "GreenCars",
       icon: <Car size={32} />,
       price: "₹249",
       description: "Comfortable sedans for daily commute",
-      image: "https://images.unsplash.com/photo-1546614042-7df3c24c9e5d?w=800&auto=format&fit=crop&q=60",
+      image: "/images/Home_Page1.png",
       buttonText: "Book GreenCars"
     },
     {
@@ -16,7 +16,7 @@ const ChooseRideSection: React.FC = () => {
       icon: <Bike size={32} />,
       price: "₹49",
       description: "Quick & affordable bike rides",
-      image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+      image: "/images/Home-Page2.png",
       buttonText: "Book GreenBikes"
     },
     {
@@ -24,7 +24,7 @@ const ChooseRideSection: React.FC = () => {
       icon: <Truck size={32} />,
       price: "₹249",
       description: "Spacious SUVs for group travel",
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+      image: "/images/Home-Page8.png",
       buttonText: "Book GreenXL"
     },
     {
@@ -32,7 +32,7 @@ const ChooseRideSection: React.FC = () => {
       icon: <Clock size={32} />,
       price: "₹999",
       description: "Hourly packages for multiple stops",
-      image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+      image: "/images/Home-Page3.png",
       buttonText: "Book GreenRentals"
     },
     {
@@ -40,15 +40,13 @@ const ChooseRideSection: React.FC = () => {
       icon: <Package size={32} />,
       price: "₹129",
       description: "Fast & secure package delivery",
-      image: "https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80",
+      image: "/images/Home-Page5.png",
       buttonText: "Book GreenDelivery"
     }
   ];
 
   return (
-    <section 
-  className="py-16 bg-white dark:bg-[#1F2937]" 
->
+    <section className="py-16 bg-white dark:bg-[#1F2937]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">Choose Your Ride</h2>
