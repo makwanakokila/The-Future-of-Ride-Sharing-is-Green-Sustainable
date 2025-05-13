@@ -75,7 +75,7 @@ export default function Aboutpage() {
         <p className="text-gray-800 dark:text-gray-300 font-medium md:w-[50%] w-[90%] mx-auto mt-6">
           IdharUdhar is revolutionizing urban transportation with eco-friendly rides, cutting-edge technology, and a commitment to a greener planet.
         </p>
-        <div className="aboutButtons flex sm:flex-row flex-col items-center mx-auto sm:w-100 gap-4 mt-12 mb-25">
+        <div className="aboutButtons flex sm:flex-row flex-col items-center mx-auto sm:w-100 gap-4 mt-12 mb-15">
           <button className="btn bg-white text-green-700 dark:text-green-600 shadow-sm rounded-lg h-11 sm:w-40 w-[80%] font-medium hover:bg-gray-200 dark:hover:bg-gray-950 transition-all duration-200">
             Join Our Team
           </button>
@@ -90,7 +90,7 @@ export default function Aboutpage() {
           <div className="OurMissionImg md:h-100 h-90 md:w-[50%] w-full">
             <img src="" alt="IdharUdhar Mission" className="h-full w-full text-black dark:text-white pt-55" />
           </div>
-          <div className="OurMission-text md:h-100 h-130 md:w-[50%] w-full ps-10 flex flex-col">
+          <div className="OurMission-text md:h-100 h-130 md:w-[50%] w-full ps-10 flex flex-col md:pt-9">
             <h3 className="text-4xl text-black dark:text-white font-bold text-start mt-19">Our Mission</h3>
             <p className="text-gray-700 dark:text-gray-400 font-medium text-start mt-9 text-lg">
               At IdharUdhar, our mission is to transform urban mobility by providing eco-friendly, affordable transportation options that reduce carbon emissions while enhancing the quality of urban life.
@@ -101,7 +101,7 @@ export default function Aboutpage() {
               We believe that sustainable transportation shouldn't come at a premium cost. By leveraging cutting-edge technology, we're making green rides accessible to everyone, everywhere.
             </p>
             <button className="group btn bg-green-600 hover:bg-green-800 w-55 px-4 py-2 rounded-lg text-white font-medium transition-all duration-200 mt-10">
-              Explore Our Services <i className="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-all duration-500"></i>
+              Explore Our Services <i className="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-all duration-500"></i>
             </button>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function Aboutpage() {
         <div className="StoryList mt-20 space-y-10">
           {/* Story Block 1 */}
           <div className="StoryLine1 flex md:flex-row flex-col-reverse">
-            <div className="StroryText md:w-[50%] w-full dark:border-3 md:border-r-green-800/40 border-gray-900 p-3 md:pr-10 relative flex flex-col justify-center md:items-end items-center gap-4">
+            <div className="StroryText md:w-[50%] w-full md:border-r-2 border-gray-200 dark:border-r-green-800/40 p-3 md:pr-10 relative flex flex-col justify-center md:items-end items-center gap-4">
               <h3 className='text-2xl font-bold text-gray-900 dark:text-white md:text-right'>2023: The Beginning</h3>
               <p className='text-gray-700 dark:text-gray-400 md:text-right md:w-[85%]'>
                 IdharUdhar was founded in New Delhi by a team of environmental enthusiasts and tech innovators determined to reduce the carbon footprint of urban transportation.
@@ -134,7 +134,7 @@ export default function Aboutpage() {
 
           {/* Story Block 2 */}
           <div className="StoryLine2 flex md:flex-row flex-col-reverse">
-            <div className="StroryText md:w-[50%] w-full dark:border-3 md:border-r-green-800/40 border-gray-900 p-3 md:pr-10 relative flex flex-col justify-center md:items-end gap-4">
+            <div className="StroryText md:w-[50%] w-full md:border-r-2 border-gray-200 dark:border-r-green-800/40 p-3 md:pr-10 relative flex flex-col justify-center md:items-end gap-4">
               <h3 className='text-2xl font-bold text-gray-900 dark:text-white md:w-[86%] md:text-start'>2024: Rapid Expansion</h3>
               <p className='text-gray-700 dark:text-gray-400 md:text-start md:w-[85%]'>
                 Within a year, IdharUdhar expanded to 50+ cities across India and partnered with major electric vehicle manufacturers to build a fleet of zero-emission vehicles.
@@ -150,7 +150,7 @@ export default function Aboutpage() {
 
           {/* Story Block 3 */}
           <div className="StoryLine3 flex md:flex-row flex-col-reverse">
-            <div className="StroryText md:w-[50%] w-full dark:border-3 md:border-r-green-800/40 border-gray-900 p-3 md:pr-10 relative flex flex-col justify-center md:items-end items-center gap-4">
+            <div className="StroryText md:w-[50%] w-full md:border-r-2 border-gray-200 dark:border-r-green-800/40 p-3 md:pr-10 relative flex flex-col justify-center md:items-end items-center gap-4">
               <h3 className='text-2xl font-bold text-gray-900 dark:text-white md:text-right'>2025: Today & Beyond</h3>
               <p className='text-gray-700 dark:text-gray-400 md:text-right md:w-[85%]'>
                 Today, IdharUdhar serves over 500 cities globally with a mission to make sustainable transportation the norm rather than the exception, while continuously innovating to reduce our environmental impact.
@@ -220,7 +220,7 @@ export default function Aboutpage() {
           ))}
         </div>
         <button className="group bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-200/20 rounded-xl px-5 py-3 text-black dark:text-white text-sm mt-10 hover:bg-green-100 dark:hover:bg-green-400/40 transition-all duration-200">
-          View Full Team <i className="fas fa-angle-down ml-2 group-hover:rotate-180 transition-all duration-200"></i>
+          View Full Team <i className="fas fa-angle-down ml-2 group-hover:rotate-90 transition-all duration-200"></i>
         </button>
       </section>
 
@@ -243,7 +243,7 @@ export default function Aboutpage() {
         </div>
       </section>
 
-      <section className="GlobalPresence bg-white dark:bg-gray-950 pt-14 pb-12 pb-5">
+      <section className="GlobalPresence bg-white dark:bg-gray-950 pt-14 pb-12">
         <h3 className="text-5xl font-medium text-black dark:text-white">Our Global Presence</h3>
         <p className="text-gray-700 dark:text-gray-400 w-[45%] mx-auto mt-8">
           From bustling metropolises to emerging cities, we're bringing sustainable mobility solutions worldwide.

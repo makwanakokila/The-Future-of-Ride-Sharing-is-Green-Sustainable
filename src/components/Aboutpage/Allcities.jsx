@@ -131,18 +131,26 @@ export default function Allcities() {
 
   return (
     <section className='w-full'>
-      <div className="Allcities_header text-center w-full bg-green-600/90 pt-9 pb-10">
+      <div className="Allcities_header text-center w-full bg-[#16A34A] pt-25 pb-10">
         <h3 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white'>GreenGlide Cities</h3>
         <p className='text-white mt-4 text-lg mx-auto'>Discover all the cities where GreenGlide operates. Book a ride anywhere, anytime.</p>
         <div className="h-12 sm:w-140 size-[80%] border bg-white dark:bg-black text-gray-800 dark:text-gray-400 rounded-xl relative mx-auto mt-7">
           <i className="fas fa-search absolute text-md text-gray-500 dark:text-gray-400 top-[35%] left-3"></i>
-          <input
-            type="text"
-            className='h-full w-full bg-white dark:bg-black px-3 text-gray-800 dark:text-gray-400 pl-10 pr-4 rounded-xl shadow-md text-[0.9rem] font-medium border border-transparent focus:border-green-600 focus:outline-none'
-            placeholder='Search for a city or state...'
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+        <input
+   type="text"
+   className='h-full w-full bg-white dark:bg-black px-3 text-gray-800 dark:text-gray-400 pl-10 pr-4 rounded-xl shadow-md text-[0.9rem] font-medium border border-transparent focus:border-green-600 focus:outline-none'
+   placeholder='Search for a city or state...'
+   value={searchTerm}
+   onChange={handleSearch}
+  />
+  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+   {/* Your Search Icon (SVG Example) */}
+   <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+   </svg>
+   {/* Your Search Icon (Image Example) */}
+   {/* <img src="/path/to/your/search-icon.png" alt="Search Icon" className="w-5 h-5 text-gray-500 dark:text-gray-400" /> */}
+  </div>
         </div>
       </div>
 
@@ -213,29 +221,31 @@ export default function Allcities() {
         )}
       </div>
 
-      <div className="Expansion-plans w-full bg-gray-100 dark:bg-gray-800/97 pt-10 pb-2">
-        <h3 className='text-3xl md:text-4xl font-bold text-gray-900 dark:text-white'>Our Expansion Plans</h3>
-        <p className='mt-5 w-[90%] md:w-[50%] text-lg text-gray-700 dark:text-gray-400 mx-auto'>GreenGlide is rapidly expanding to new cities across India. We're committed to bringing our eco-friendly, reliable transportation solutions to every corner of the country.</p>
+<div className="Expansion-plans w-full  bg-gray-100 dark:bg-gray-800/95 pt-10 pb-2">
+  <h3 className='text-3xl md:text-4xl font-bold dark:text-white text-gray-900'>Our Expansion Plans</h3>
+  <p className='mt-5 w-[90%] md:w-[50%] text-lg dark:text-gray-400 text-gray-700 mx-auto'>
+    GreenGlide is rapidly expanding to new cities across India. We're committed to bringing our eco-friendly, reliable transportation solutions to every corner of the country.
+  </p>
 
-        <div className="planDetails w-full md:px-0 px-3 md:flex justify-center mt-9">
-          <div className="planDetails-card h-30 w-full md:w-52 bg-gray-200 dark:bg-gray-700/70 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
-            <span className='block text-3xl font-bold text-green-400/90'>500+</span>
-            <span className='block text-base font-bold text-gray-800 dark:text-gray-400'>Current Cities</span>
-          </div>
-          <div className="planDetails-card h-30 w-full md:w-52 bg-gray-200 dark:bg-gray-700/70 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
-            <span className='block text-3xl font-bold text-green-400/90'>50+</span>
-            <span className='block text-base font-bold text-gray-800 dark:text-gray-400'>New Cities This Year</span>
-          </div>
-          <div className="planDetails-card h-30 w-full md:w-52 bg-gray-200 dark:bg-gray-700/70 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
-            <span className='block text-3xl font-bold text-green-400/90'>28</span>
-            <span className='block text-base font-bold text-gray-800 dark:text-gray-400'>State Covered</span>
-          </div>
-        </div>
+  <div className="planDetails w-full md:px-0 px-3 md:flex justify-center mt-9">
+    <div className="planDetails-card h-30 w-full md:w-52 dark:bg-gray-700/70 bg-gray-200 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
+      <span className='block text-3xl font-bold text-green-400/90'>500+</span>
+      <span className='block text-base font-bold dark:text-gray-400 text-gray-800'>Current Cities</span>
+    </div>
+    <div className="planDetails-card h-30 w-full md:w-52 dark:bg-gray-700/70 bg-gray-200 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
+      <span className='block text-3xl font-bold text-green-400/90'>50+</span>
+      <span className='block text-base font-bold dark:text-gray-400 text-gray-800'>New Cities This Year</span>
+    </div>
+    <div className="planDetails-card h-30 w-full md:w-52 dark:bg-gray-700/70 bg-gray-200 rounded-lg flex flex-col justify-center mt-2 md:mx-3 shadow-md">
+      <span className='block text-3xl font-bold text-green-400/90'>28</span>
+      <span className='block text-base font-bold dark:text-gray-400 text-gray-800'>State Covered</span>
+    </div>
+  </div>
 
-        <button className='btn mt-10 mb-7 bg-green-500/80 hover:bg-green-600/80 h-10 w-39 rounded-lg text-gray-900 text-medium'>
-          Partner With Us
-        </button>
-      </div>
+  <button className='btn mt-10 mb-7 bg-green-500/80 hover:bg-green-600/80 h-10 w-39 rounded-lg text-white dark:text-gray-900 text-medium'>
+    Partner With Us
+  </button>
+</div>
     </section>
 
   )

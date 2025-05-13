@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { AuthProvider } from './components/User/AuthContext';
 import HomePage from './pages/HomePage';
 import Layout from './components/Layout';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -16,9 +17,11 @@ import OTPVerification from './components/User/OTPVerification';
 import ProfileLayout from './components/profile/ProfileLayout';
 import Aboutpage from './components/Aboutpage/Aboutpage'
 import Allcities from './components/Aboutpage/Allcities'
+
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <ThemeProvider>
         <Layout>
           <Routes>
@@ -37,9 +40,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/otpverification" element={<OTPVerification />} />
             <Route path="/ProfileLayout" element={<OTPVerification />} />
+            <Route path="/profile" element={< ProfileLayout/>} />
+
           </Routes>
         </Layout>
       </ThemeProvider>
+      </AuthProvider>
     </div>
   );
 }

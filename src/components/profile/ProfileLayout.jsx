@@ -4,7 +4,7 @@ import SavedLocations from './SavedLocations';
 import PaymentMethods from './PaymentMethods';
 import MyRides from './MyRides';
 import AccountSettings from './AccountSettings';
-import EditProfileForm from './EditProfile'; // ✅ make sure the file name is correct and exists in the same folder
+import EditProfileForm from './EditProfile';
 
 const USER_DATA_KEY = 'user_profile_data';
 
@@ -78,7 +78,7 @@ const ProfileLayout = () => {
         )}
 
         {/* Content or Edit Form */}
-        <div className={`${activeTab !== 'settings' && !isEditing ? '"bg-white border dark:border-none shadow-lg dark:bg-[#010514] rounded-lg p-6' : (isEditing ? '"bg-white border shadow-lg  darkbg-[#010514] rounded-lg p-6' : '')}`}>
+        <div className={`${activeTab !== 'settings' && !isEditing ? 'bg-white border dark:border-none shadow-lg dark:bg-[#010514] rounded-lg p-6' : (isEditing ? 'bg-white border shadow-lg dark:bg-[#010514] rounded-lg p-6' : '')}`}>
           {isEditing ? (
             <EditProfileForm
               initialData={userData}
