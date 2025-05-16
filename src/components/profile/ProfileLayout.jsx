@@ -1,10 +1,11 @@
+// ProfileLayout.js
 import React, { useState, useEffect } from 'react';
-import ProfileSidebar from './ProfileSidebar';
-import SavedLocations from './SavedLocations';
-import PaymentMethods from './PaymentMethods';
-import MyRides from './MyRides';
-import AccountSettings from './AccountSettings';
-import EditProfileForm from './EditProfile';
+import ProfileSidebar from './ProfileSidebar'; // Assuming default export
+import SavedLocations from './SavedLocations'; // Assuming default export
+import PaymentMethods from './PaymentMethods'; // Assuming default export
+import MyRides from './MyRides'; // Assuming default export
+import AccountSettings from './AccountSettings'; // Assuming default export
+import EditProfileForm from './EditProfile'; // Assuming default export
 
 const USER_DATA_KEY = 'user_profile_data';
 
@@ -46,7 +47,7 @@ const ProfileLayout = () => {
   };
 
   return (
-    <div className="dark:bg-gray-900 min-h-screen text-white flex justify-center">
+    <div className="bg-white dark:bg-gray-900 min-h-screen text-white flex justify-center mt-15">
       <div className="w-[350px] p-6">
         <ProfileSidebar
           userData={userData}

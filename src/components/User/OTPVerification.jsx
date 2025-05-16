@@ -1,87 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+"use client"
+
+import { useState, useEffect } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import axios from "axios"
+import { useAuth } from "../../contexts/AuthContext"
 
 const OTPVerification = () => {
-  const [timer, setTimer] = useState(30);
-  const [showResend, setShowResend] = useState(false);
-  const [otp, setOtp] = useState(new Array(6).fill(""));
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [timer, setTimer] = useState(30)
+  const [showResend, setShowResend] = useState(false)
+  const [otp, setOtp] = useState(new Array(6).fill(""))
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const email = location.state?.email || "";
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { login } = useAuth()
+  const email = location.state?.email || ""
 
   useEffect(() => {
     const countdown = setInterval(() => {
-      setTimer(prev => {
+      setTimer((prev) => {
         if (prev === 1) {
-          clearInterval(countdown);
-          setShowResend(true);
-          return 0;
+          clearInterval(countdown)
+          setShowResend(true)
+          return 0
         }
-        return prev - 1;
-      });
-    }, 1000);
+        return prev - 1
+      })
+    }, 1000)
 
-    return () => clearInterval(countdown);
-  }, []);
+    return () => clearInterval(countdown)
+  }, [])
 
   const handleChange = (e, index) => {
-    const value = e.target.value;
+    const value = e.target.value
     if (/^\d?$/.test(value)) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+      const newOtp = [...otp]
+      newOtp[index] = value
+      setOtp(newOtp)
 
       if (value && index < 5) {
-        document.getElementById(`otp-${index + 1}`).focus();
+        document.getElementById(`otp-${index + 1}`).focus()
       }
     }
-  };
+  }
 
   const handleResend = async () => {
     try {
-      await axios.post("https://idharudhar-backend-1.onrender.com/api/auth/send-otp", { email });
-      setTimer(30);
-      setShowResend(false);
+      await axios.post("https://idharudhar-backend-1.onrender.com/api/auth/send-otp", { email })
+      setTimer(30)
+      setShowResend(false)
     } catch (err) {
-      console.error("Resend OTP error:", err);
+      console.error("Resend OTP error:", err)
     }
-  };
+  }
 
   const handleVerify = async () => {
-    const enteredOtp = otp.join("");
+    const enteredOtp = otp.join("")
 
     if (enteredOtp.length !== 6) {
-      setError("Please enter the complete 6-digit OTP.");
-      return;
+      setError("Please enter the complete 6-digit OTP.")
+      return
     }
 
-    setLoading(true);
-    setError("");
+    setLoading(true)
+    setError("")
 
     try {
       const response = await axios.post("https://idharudhar-backend.onrender.com/api/auth/verify-otp", {
         email,
-        otp: enteredOtp
-      });
+        otp: enteredOtp,
+      })
 
       if (response.status === 200) {
-        // Successfully verified
-        navigate("/"); // or to a protected route
+        // For demo purposes, we'll create a user object
+        const userData = {
+          name: email.split("@")[0], // Use part of email as name for demo
+          email: email,
+          // Add other user data as needed
+        }
+
+        // Login the user
+        login(userData)
+
+        // Navigate to home page
+        navigate("/")
       } else {
-        setError(response.data.message || "Invalid OTP.");
+        setError(response.data.message || "Invalid OTP.")
       }
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Failed to verify OTP. Please try again."
-      );
+      setError(err.response?.data?.message || "Failed to verify OTP. Please try again.")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
@@ -112,13 +124,10 @@ const OTPVerification = () => {
         {/* Resend Section */}
         {!showResend ? (
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-            Resend code in {timer} second{timer !== 1 ? 's' : ''}
+            Resend code in {timer} second{timer !== 1 ? "s" : ""}
           </p>
         ) : (
-          <button
-            onClick={handleResend}
-            className="text-green-600 font-medium text-sm mb-4 hover:underline"
-          >
+          <button onClick={handleResend} className="text-green-600 font-medium text-sm mb-4 hover:underline">
             Resend OTP
           </button>
         )}
@@ -139,7 +148,7 @@ const OTPVerification = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default OTPVerification;
+export default OTPVerification

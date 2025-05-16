@@ -14,45 +14,45 @@ const EditProfileForm = ({ onCancel, onSave, initialData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-[#010514] backdrop-blur-sm rounded-lg p-6">
+    <form onSubmit={handleSubmit} className="bg-white shadow-xl dark:bg-[#010514] backdrop-blur-sm rounded-lg p-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-white">Edit Your Profile</h2>
+        <h2 className="text-2xl font-bold text-black dark:text-white">Edit Your Profile</h2>
         <button type="button" onClick={onCancel}>
-          <X className="text-gray-300 hover:text-white w-6 h-6" />
+          <X className="text-gray-600 dark:text-gray-300 hover:text-white w-6 h-6" />
         </button>
       </div>
 
       <div className="space-y-4">
-        <label className="block text-gray-400">Full Name</label>
+        <label className="block text-gray-800 dark:text-gray-400 text-start">Full Name</label>
         <input
-          className="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          className="w-full p-2 rounded bg-white  dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-600 text-black dark:text-white placeholder-gray-400"
           name="fullName"
           value={formData.fullName}
           onChange={handleChange}
           placeholder="Full Name"
         />
 
-        <label className="block text-gray-400">Email Address</label>
+        <label className="block text-gray-800 dark:text-gray-400 text-start">Email Address</label>
         <input
-          className="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          className="w-full p-2 rounded bg-white  dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-600 text-black dark:text-white placeholder-gray-400"
           name="email"
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
         />
 
-        <label className="block text-gray-400">Phone Number</label>
+        <label className="block text-gray-800 dark:text-gray-400 text-start">Phone Number</label>
         <input
-          className="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          className="w-full p-2 rounded bg-white  dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-600 text-black dark:text-white placeholder-gray-400"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
           placeholder="Phone"
         />
 
-        <label className="block text-gray-400">Address</label>
+        <label className="block text-gray-800 dark:text-gray-400 text-start">Address</label>
         <input
-          className="w-full p-2 rounded bg-gray-700 text-white placeholder-gray-400"
+          className="w-full p-2 rounded bg-white  dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-600 text-black dark:text-white placeholder-gray-400"
           name="address"
           value={formData.address}
           onChange={handleChange}
@@ -64,7 +64,7 @@ const EditProfileForm = ({ onCancel, onSave, initialData }) => {
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"
+          className="dark:bg-gray-700 dark:hover:bg-gray-600 border border-gray-600 text-black dark:text-white px-4 py-2 rounded-lg"
         >
           Cancel
         </button>

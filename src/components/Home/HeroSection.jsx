@@ -1,7 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import { MapPin } from "lucide-react";
+import { FaMapMarkerAlt, FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const [pickup, setPickup] = useState('');
+  const [dropoff, setDropoff] = useState('');
+  const navigate = useNavigate();
+
+  const isDisabled = !pickup.trim() || !dropoff.trim();
+
+  const handleFindRides = () => {
+    if (!isDisabled) {
+      navigate(`/book?pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(dropoff)}`);
+    }
+  };
   return (
     <section className="bg-green-800 text-white pt-16 pb-12 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -20,41 +33,38 @@ const HeroSection = () => {
               nationwide.
             </p>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 w-full max-w-ld border-0.5">
-              <div className="mb-4">
-                <div className="relative">
-                  <MapPin
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-400"
-                    size={20}
-                  />
-                  <input
-                    type="text"
-                    id="pickup"
-                    placeholder="Enter pickup location"
-                    className="w-full bg-white/20 backdrop-blur-sm text-white placeholder-gray-300 rounded-md py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-green-400"
-                  />
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <div className="relative">
-                  <MapPin
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-400"
-                    size={20}
-                  />
-                  <input
-                    type="text"
-                    id="destination"
-                    placeholder="Enter destination"
-                    className="w-full bg-white/20 backdrop-blur-sm text-white placeholder-gray-300 rounded-md py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-green-400"
-                  />
-                </div>
-              </div>
-
-              <button className="w-full bg-green-500 hover:bg-green-600 transition-colors text-white font-medium rounded-md py-3">
-                Find Rides
-              </button>
-            </div>
+             <div className="mt-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 space-y-4 shadow-lg w-full max-w-lg">
+                      <div className="flex items-center bg-white/10 rounded-md px-3 py-2">
+                        <FaMapMarkerAlt className="text-green-300 mr-3" />
+                        <input
+                          type="text"
+                          placeholder="Pickup Location"
+                          className="bg-transparent outline-none w-full text-white placeholder-gray-300"
+                          value={pickup}
+                          onChange={(e) => setPickup(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex items-center bg-white/10 rounded-md px-3 py-2">
+                        <FaMapMarkerAlt className="text-green-300 mr-3" />
+                        <input
+                          type="text"
+                          placeholder="Dropoff Location"
+                          className="bg-transparent outline-none w-full text-white placeholder-gray-300"
+                          value={dropoff}
+                          onChange={(e) => setDropoff(e.target.value)}
+                        />
+                      </div>
+          
+                      <button
+                        onClick={handleFindRides}
+                        disabled={isDisabled}
+                        className={`w-full py-2 rounded-md flex items-center justify-center gap-2 font-semibold  cursor-pointer
+                          ${isDisabled ? 'bg-green-800 cursor-not-allowed opacity-50' : 'bg-green-500 hover:bg-green-600 text-white'}`}
+                      >
+                        <FaSearch />
+                        Find Rides
+                      </button>
+                    </div>
           </div>
 
           {/* RIGHT SIDE - Image and Info */}

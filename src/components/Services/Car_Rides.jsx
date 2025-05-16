@@ -9,8 +9,8 @@ export default function CarRides() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left */}
           <div className="md:w-1/2">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">GreenCar Rides</h1>
-            <p className="text-lg md:text-xl mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-start">GreenCar Rides</h1>
+            <p className="text-lg md:text-xl mb-8 text-start">
               Comfortable, affordable, and eco-friendly car rides for your daily commute
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -208,19 +208,20 @@ export default function CarRides() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Text Section */}
           <div className="space-y-4 m-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Ready to Experience GreenCar?</h2>
-            <p className="text-lg opacity-90">
+            <h2 className="text-3xl md:text-4xl font-bold text-start">Ready to Experience GreenCar?</h2>
+            <p className="text-lg opacity-90 text-start">
               Download our app and get your first ride with a special discount.
               Use code <strong>FIRSTRIDE</strong> for 50% off.
             </p>
-            <div className="pt-4">
-              <a
-                href="/book"
-                className="inline-flex items-center justify-center gap-2 text-sm font-medium h-11 px-8 rounded-md bg-white text-green-700 hover:bg-gray-100 transition"
-              >
-                Book Now
-              </a>
-            </div>
+           <div className="pt-4 text-start">
+    <a
+        href="/book"
+        className="inline-flex items-center justify-center gap-2 text-sm font-medium h-11 px-8 rounded-md bg-white text-green-700 hover:bg-gray-100 transition"
+    >
+        Book Now
+    </a>
+</div>
+
           </div>
 
           {/* Image Section */}

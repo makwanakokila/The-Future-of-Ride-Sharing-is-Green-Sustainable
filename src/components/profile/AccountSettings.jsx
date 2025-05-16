@@ -9,10 +9,10 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
-        <h3 className="text-xl font-bold text-black dark:text-white mb-4">Delete Your Account</h3>
+        <h3 className="text-xl font-bold text-black dark:text-white mb-4 text-start">Delete Your Account</h3>
         <div className="mb-6">
-          <p className="text-black dark:text-gray-300 mb-4">Before deleting your account, please understand:</p>
-          <ul className="list-disc list-inside text-black dark:text-gray-300 space-y-2">
+          <p className="text-black dark:text-gray-300 mb-4 text-start">Before deleting your account, please understand:</p>
+          <ul className="list-disc list-inside text-black dark:text-gray-300 space-y-2 text-start">
             <li>All your personal data will be permanently deleted</li>
             <li>Your ride history and payment information will be removed</li>
             <li>Your account will be permanently deleted within 7 days</li>
@@ -20,7 +20,7 @@ const DeleteAccountModal = ({ isOpen, onClose, onConfirm }) => {
           </ul>
         </div>
         <div className="mb-6">
-          <label className="block text-sm font-medium text-black dark:text-gray-300 mb-2">
+          <label className="block text-sm font-medium text-black dark:text-gray-300 mb-2 text-start">
             To proceed, type "delete" below:
           </label>
           <input
@@ -70,22 +70,22 @@ const AccountSettings = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-black dark:text-white mb-2">Account Settings</h2>
-      <p className="text-gray-600 dark:text-gray-400 mb-4">Manage your account preferences and privacy settings</p>
-      <h3 className="text-[22px] font-semibold text-black dark:text-white mb-4">Your Data</h3>
+      <h2 className="text-2xl font-semibold text-white dark:text-white mb-2 text-start">Account Settings</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-4 text-start">Manage your account preferences and privacy settings</p>
+      <h3 className="text-[22px] font-semibold text-white dark:text-white mb-4 text-start">Your Data</h3>
 
       <div className="bg-white shadow-xl dark:bg-gray-800 rounded-lg p-6 mb-6">
         <div className="flex items-center gap-2 mb-1">
           <Download size={20} className="text-black dark:text-white" />
           <h3 className="text-xl font-semibold text-black dark:text-white">Download Your Data</h3>
         </div>
-        <p className="text-gray-600 dark:text-gray-400 text-sm mb-5">
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 text-start">
           You can download all your personal data or specific categories in various formats.
         </p>
 
         {/* Dropdown for Data Type */}
         <div className="mb-4">
-          <label className="block text-gray-600 dark:text-gray-300 mb-1 text-sm">Data Type</label>
+          <label className="block text-gray-600 dark:text-gray-300 mb-1 text-sm text-start">Data Type</label>
           <div className="relative">
             <button
               onClick={() => setOpenType(!openType)}
@@ -118,7 +118,7 @@ const AccountSettings = () => {
 
         {/* Dropdown for Format */}
         <div className="mb-4">
-          <label className="block text-gray-600 dark:text-gray-300 mb-1 text-sm">Format</label>
+          <label className="block text-gray-600 dark:text-gray-300 mb-1 text-sm text-start">Format</label>
           <div className="relative">
             <button
               onClick={() => setOpenFormat(!openFormat)}
@@ -158,21 +158,23 @@ const AccountSettings = () => {
         </p>
       </div>
 
-      <h3 className="text-xl font-bold text-red-500 mb-2">Danger Zone</h3>
+      <h3 className="text-xl font-bold text-red-500 mb-2 text-start">Danger Zone</h3>
       <div className="shadow-xl bg-white dark:bg-gray-800 rounded-lg p-6">
         <div className="flex items-start">
           <Trash2 className="w-6 h-6 text-red-500 mr-4" />
           <div>
-            <h4 className="text-lg font-semibold text-black dark:text-white">Delete Account</h4>
-            <p className="text-gray-600 dark:text-gray-400 mt-1 mb-4">
+            <h4 className="text-lg font-semibold text-black dark:text-white text-start">Delete Account</h4>
+            <p className="text-gray-600 dark:text-gray-400 mt-1 mb-4 text-start">
               Once you delete your account, all your data will be permanently removed. This action cannot be undone.
             </p>
-            <button
-              onClick={() => setIsDeleteModalOpen(true)}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
-            >
-              Delete Account
-            </button>
+            <div className="grid grid-cols-1 place-items-start">
+  <button
+    onClick={() => setIsDeleteModalOpen(true)}
+    className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors justify-content-start"
+  >
+    Delete Account
+  </button>
+</div>
           </div>
         </div>
       </div>

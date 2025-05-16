@@ -10,8 +10,8 @@ export default function Bike_Rides() {
 
                         {/* Left Content */}
                         <div className="md:w-1/2">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-6">GreenBike Rides</h1>
-                            <p className="text-lg md:text-xl mb-8">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-start">GreenBike Rides</h1>
+                            <p className="text-lg md:text-xl mb-8 text-start">
                                 Quick, affordable, and eco-friendly bike rides to beat the traffic
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
@@ -183,18 +183,18 @@ export default function Bike_Rides() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             {/* Text Section */}
                             <div className="space-y-4 m-6">
-                                <h2 className="text-3xl md:text-4xl font-bold">Ready for a Quick Ride?</h2>
-                                <p className="text-lg opacity-90">
+                                <h2 className="text-3xl md:text-4xl font-bold text-start">Ready for a Quick Ride?</h2>
+                                <p className="text-lg opacity-90 text-start">
                                     Download our app and book your first bike ride with a special discount. Use code FIRSTBIKE for 30% off.
                                 </p>
-                                <div className="pt-4">
-                                    <a
-                                        href="/book"
-                                        className="inline-flex items-center justify-center gap-2 text-sm font-medium h-11 px-8 rounded-md bg-white text-green-700 hover:bg-gray-100 transition"
-                                    >
-                                        Rent Now
-                                    </a>
-                                </div>
+                                 <div className="pt-4 text-start">
+                <a
+                  href="/book"
+                  className="inline-flex items-center justify-center gap-2 text-sm font-medium h-11 px-8 rounded-md bg-white text-green-700 hover:bg-gray-100 transition"
+                >
+                  Rent Now
+                </a>
+              </div>
                             </div>
 
                             {/* Image Section */}
