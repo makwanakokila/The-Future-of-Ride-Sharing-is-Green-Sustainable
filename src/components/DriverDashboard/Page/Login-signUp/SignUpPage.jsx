@@ -107,7 +107,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center py-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center py-22">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
         <h1 className="text-2xl font-bold text-center mb-6 text-green-700">Driver Registration</h1>
         

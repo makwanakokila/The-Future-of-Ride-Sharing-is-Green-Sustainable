@@ -4,10 +4,10 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Contexts
 import { useAuth } from "./contexts/AuthContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
 
 // Common
 import Layout from "./components/Layout";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 // User Pages
 import HomePage from "./pages/HomePage";
@@ -37,81 +37,77 @@ import DriverDashboard from './components/DriverDashboard/Page/DriverDashboard';
 import DriverPannle from './components/DriverDashboard/DriverPannle';
 import RideHistory from './components/DriverDashboard/Page/RideHistory';
 import Earnings from './components/DriverDashboard/Page/Earnings';
-import ProfileDriver from './components/DriverDashboard/Page/Profile'; // Renamed to avoid conflict
+import Profile from './components/DriverDashboard/Page/Profile';
 import Support from './components/DriverDashboard/Page/Support';
 import Settings from './components/DriverDashboard/Page/Settings';
 import { ProtectedRoute } from './contexts/ProtectedRoute';
 import AuthPage from './components/DriverDashboard/Page/Login-signUp/AuthPage';
-import LoginPageDriver from './components/DriverDashboard/Page/Login-signUp/LoginPage'; //Renamed to avoid conflict
-import SignupPageDriver from './components/DriverDashboard/Page/Login-signUp/SignUpPage';  //Renamed to avoid conflict
-
+import LoginPage from './components/DriverDashboard/Page/Login-signUp/LoginPage';
+import SignupPage from './components/DriverDashboard/Page/Login-signUp/SignUpPage';
 
 function App() {
-    const navigate = useNavigate();
-    const { user } = useAuth();
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
-    useEffect(() => {
-        if (!user && window.location.pathname === "/profile") {
-            navigate("/");
-        }
-    }, [user, navigate]);
+  useEffect(() => {
+    if (!user && window.location.pathname === "/profile") {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
-    return (
-        <div className="App">
-            <Layout>
-                <Routes>
-                    {/* Common Routes (accessible to all) */}
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/about" element={<Aboutpage />} />
-                    <Route path="/allcities" element={<Allcities />} />
-                    <Route path="/Safety" element={<HeroSafety />} />
+  return (
+    <div className="App">
+      <Layout>
+        <Routes>
+          {/* User Routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/carrides" element={<CarRides />} />
+          <Route path="/rentals" element={<Rentals />} />
+          <Route path="/Auto_rides" element={<Auto_Rides />} />
+          <Route path="/Bike_rides" element={<Bike_Rides />} />
+          <Route path="/Intercity" element={<Intercity />} />
+          <Route path="/Book_ride" element={<Book_Ride />} />
+          <Route path="/about" element={<Aboutpage />} />
+          <Route path="/allcities" element={<Allcities />} />
+          <Route path="/Safety" element={<HeroSafety />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/otpverification" element={<OTPVerification />} />
+          <Route path="/profile" element={<ProfileLayout />} />
+          <Route path="/book" element={<RideBooking />} />
+          <Route path="/book-ride" element={<BookRide />} />
+          <Route path="/bike-ride" element={<BikeRide />} />
+          <Route path="/confirm" element={<ConfirmRide />} />
+          <Route path="/add-payment" element={<AddPaymentMethod />} />
+          <Route path="/ride-tracking" element={<RideTrackingPage />} />
+          <Route path="/rating" element={<RideCompleted />} />
 
-                    {/* User Routes */}
-                    <Route path="/carrides" element={<CarRides />} />
-                    <Route path="/rentals" element={<Rentals />} />
-                    <Route path="/Auto_rides" element={<Auto_Rides />} />
-                    <Route path="/Bike_rides" element={<Bike_Rides />} />
-                    <Route path="/Intercity" element={<Intercity />} />
-                    <Route path="/Book_ride" element={<Book_Ride />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/otpverification" element={<OTPVerification />} />
-                    <Route path="/profile" element={<ProfileLayout />} />
-                    <Route path="/book" element={<RideBooking />} />
-                    <Route path="/book-ride" element={<BookRide />} />
-                    <Route path="/bike-ride" element={<BikeRide />} />
-                    <Route path="/confirm" element={<ConfirmRide />} />
-                    <Route path="/add-payment" element={<AddPaymentMethod />} />
-                    <Route path="/ride-tracking" element={<RideTrackingPage />} />
-                    <Route path="/rating" element={<RideCompleted />} />
+         
 
+         {/* Driver side  */}
+              {/* Auth routes */}
+              <Route path='/auth' element={<AuthPage />} />
+              <Route path='/auth/login' element={<LoginPage />} />
+              <Route path='/auth/signup' element={<SignupPage />} />
 
-
-                    {/* Driver Routes (Conditional Access) */}
-                    <Route path="/driver">
-                        <Route element={<ProtectedRoute />}>
-                            <Route element={<DriverPannle />}>
-                                <Route index element={<DriverDashboard />} />
-                                <Route path="ridehistory" element={<RideHistory />} />
-                                <Route path="earnings" element={<Earnings />} />
-                                <Route path="profile" element={<ProfileDriver />} />
-                                <Route path="support" element={<Support />} />
-                                <Route path="settings" element={<Settings />} />
-                            </Route>
-                        </Route>
-                         {/* Driver Authentication Routes (only accessible if userType is driver) */}
-                        <Route path='auth'>
-                            <Route path='' element={<AuthPage/>}/>
-                            <Route path='login' element={<LoginPageDriver />} />
-                            <Route path='signup' element={<SignupPageDriver />} />
-                        </Route>
-                    </Route>
-
-
-                </Routes>
-            </Layout>
-        </div>
-    );
+              {/* Protected driver routes */}
+              <Route path='/driver' element={
+                <ProtectedRoute>
+                  <DriverPannle />
+                </ProtectedRoute>
+              }>
+                <Route index element={<DriverDashboard />} />
+                <Route path='ridehistory' element={<RideHistory />} />
+                <Route path='earnings' element={<Earnings />} />
+                <Route path='profile' element={<Profile />} />
+                <Route path='support' element={<Support />} />
+                <Route path='settings' element={<Settings />} />
+              </Route>
+        </Routes>
+      </Layout>
+    </div>
+  );
 }
 
 export default App;
+

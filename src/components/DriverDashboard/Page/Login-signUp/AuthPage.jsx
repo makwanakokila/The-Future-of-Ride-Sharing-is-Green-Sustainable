@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function AuthPage() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-22">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
         {/* Logo/Header*/}
         <div className="text-center mb-8">
