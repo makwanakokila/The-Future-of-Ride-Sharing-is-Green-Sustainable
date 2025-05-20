@@ -6,14 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { GlobalContext } from './contexts/GlobalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <AuthProvider>
+    <GlobalContext>
     <ThemeProvider>
     <App />
     </ThemeProvider>
+    </GlobalContext>
     </AuthProvider>
   </BrowserRouter>
 );
@@ -22,3 +25,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+

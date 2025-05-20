@@ -1,43 +1,55 @@
-"use client"
+import { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { createContext, useContext, useState, useEffect } from "react"
-
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user data exists in localStorage
-    const savedUser = localStorage.getItem("user")
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
+    const storedUser = localStorage.getItem('idharUdharUser');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
-    setIsLoading(false)
-  }, [])
-
-  const isAuthenticated = !!user
+    setLoading(false);
+  }, []);
 
   const login = (userData) => {
-    setUser(userData)
-    localStorage.setItem("user", JSON.stringify(userData))
-  }
+    const storedUser = localStorage.getItem('idharUdharUser');
+    if (!storedUser) {
+      alert('No user found. Please sign up.');
+      return;
+    }
+
+    const parsedUser = JSON.parse(storedUser);
+    console.log(parsedUser)
+
+    if (userData.email === parsedUser.email && userData.password === parsedUser.password) {
+      setUser(parsedUser);
+      navigate('/driver');
+    } else {
+      throw new Error('Invalid credentials');
+    }
+  };
+
+  const signup = (userData) => {
+    localStorage.setItem('idharUdharUser', JSON.stringify(userData));
+    navigate('/auth/login');
+  };
 
   const logout = () => {
-    setUser(null)
-    localStorage.removeItem("user")
-  }
+    localStorage.removeItem('idharUdharUser');
+    setUser(null);
+    navigate('/');
+  };
 
-  if (isLoading) return null // Prevents rendering until localStorage is loaded
+  return (
+    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
-  return <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>{children}</AuthContext.Provider>
-}
-
-export const useAuth = () => {
-  const context = useContext(AuthContext)
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider")
-  }
-  return context
-}
+export const useAuth = () => useContext(AuthContext);
