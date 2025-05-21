@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { FaSun, FaMoon, FaCheck, FaTimes, FaSpinner, FaPlus, FaTrash, FaEdit } from 'react-icons/fa'
-import { useAuth } from '../../../contexts/AuthContext'
 import { useTheme } from '../../../contexts/ThemeContext'
+
 
 const Settings = () => {
   const { isDarkMode, toggleTheme } = useTheme()
-  const { logout, user } = useAuth()
   
   // State for all settings sections
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
@@ -36,8 +35,8 @@ const Settings = () => {
   })
   
   const [formData, setFormData] = useState({
-    email: user?.email || 'john.doe@example.com',
-    phone: user?.phone || '+1 (555) 123-4567',
+    email: 'john.doe@example.com',
+    phone: '+1 (555) 123-4567',
     vehicleMake: 'Toyota',
     vehicleModel: 'Camry',
     vehicleYear: '2020',
@@ -368,7 +367,6 @@ const showSaveStatus = (field, message, isError = false) => {
   }
 
   const confirmLogout = () => {
-    logout()
     setShowLogoutConfirm(false)
   }
 
@@ -933,7 +931,7 @@ const showSaveStatus = (field, message, isError = false) => {
                       checked={value} 
                       onChange={() => toggleNotification(key)} 
                     />
-                    <div className="w-11 h-6 dark:bg-gray-700 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
+                    <div className="w-11 h-6 dark:bg-gray-700 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-[55%] peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[0px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-600"></div>
                   </label>
                 </div>
               ))}
@@ -1108,7 +1106,7 @@ const showSaveStatus = (field, message, isError = false) => {
                 >
                   <span
                     className={`inline-block w-4 h-4 transform transition-transform rounded-full bg-white ${
-                      isDarkMode ? 'translate-x-6' : 'translate-x-1'
+                      isDarkMode ? 'translate-x-3' : 'translate-x-1'
                     }`}
                   />
                 </button>

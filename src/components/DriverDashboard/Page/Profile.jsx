@@ -8,12 +8,26 @@ const Profile = () => {
     driverId: '89723415',
     rating: 4.8,
     rides: 845,
-    level: 'Gold',
+    level: 'Bronze',
     levelNumber: 3,
     progressToNextLevel: 65,
     email: 'john.doe@example.com',
-    phone: '+1 (555) 123-4567'
+    phone: '+1 (555) 123-4567',
   });
+  const getLevelColor = (level) => {
+  switch(level) {
+    case 'Gold':
+      return 'amber-400';
+    case 'Silver':
+      return 'gray-500';
+    case 'Bronze':
+      return 'red-600';
+    case 'Platinum':
+      return 'blue-400';
+    default:
+      return 'gray-500';
+  }
+};
 
   const [personalInfo, setPersonalInfo] = useState([
     { label: 'Full Name', value: 'John Alexander Doe', icon: 'user', key: 'fullName', type: 'text', required: true, pattern: /^[a-zA-Z ]+$/ },
@@ -325,13 +339,13 @@ const Profile = () => {
           {/* Driver Level */}
           <div className="dark:bg-gray-200/10 bg-white rounded-xl p-6 shadow-sm dark:border-gray-700 border-gray-200 hover:shadow-lg transition-all">
             <h3 className="text-lg font-semibold mb-4 flex items-center dark:text-gray-200 text-gray-800">
-              <i className="fas fa-medal text-amber-400 mr-3 text-xl"></i> Driver Level
+              <i className={`fas fa-medal text-${getLevelColor(profileData.level)} mr-3 text-xl`}></i> Driver Level
             </h3>
 
             <div className="flex flex-col items-center text-center">
-              <div className="relative w-20 h-20 md:w-24 md:h-24 dark:bg-amber-100/10 bg-amber-50 rounded-full flex items-center justify-center mb-4 border-4 border-amber-300 shadow-sm">
-                <div className="text-amber-400 font-bold text-lg md:text-xl">{profileData.level}</div>
-                <div className="absolute -bottom-2 bg-amber-400 text-white text-xs px-2 py-1 rounded-full">
+              <div className={`relative w-20 h-20 md:w-24 md:h-24 dark:bg-amber-100/10 bg-amber-50 rounded-full flex items-center justify-center mb-4 border-4 border-${getLevelColor(profileData.level)} shadow-sm`}>
+                <div className={`text-${getLevelColor(profileData.level)} font-bold text-lg md:text-xl`}>{profileData.level}</div>
+                <div className={`absolute -bottom-2 bg-${getLevelColor(profileData.level)} text-white text-xs px-2 py-1 rounded-full`}>
                   Level {profileData.levelNumber}
                 </div>
               </div>
@@ -347,7 +361,7 @@ const Profile = () => {
                 </div>
                 <div className="w-full dark:bg-gray-700 bg-gray-200 rounded-full h-2.5">
                   <div
-                    className="bg-amber-400 h-2.5 rounded-full shadow-sm"
+                    className={`bg-${getLevelColor(profileData.level)} h-2.5 rounded-full shadow-sm`}
                     style={{ width: `${profileData.progressToNextLevel}%` }}
                   ></div>
                 </div>

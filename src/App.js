@@ -40,10 +40,6 @@ import Earnings from './components/DriverDashboard/Page/Earnings';
 import Profile from './components/DriverDashboard/Page/Profile';
 import Support from './components/DriverDashboard/Page/Support';
 import Settings from './components/DriverDashboard/Page/Settings';
-import { ProtectedRoute } from './contexts/ProtectedRoute';
-import AuthPage from './components/DriverDashboard/Page/Login-signUp/AuthPage';
-import LoginPage from './components/DriverDashboard/Page/Login-signUp/LoginPage';
-import SignupPage from './components/DriverDashboard/Page/Login-signUp/SignUpPage';
 
 function App() {
   const navigate = useNavigate();
@@ -85,16 +81,9 @@ function App() {
          
 
          {/* Driver side  */}
-              {/* Auth routes */}
-              <Route path='/auth' element={<AuthPage />} />
-              <Route path='/auth/login' element={<LoginPage />} />
-              <Route path='/auth/signup' element={<SignupPage />} />
-
               {/* Protected driver routes */}
               <Route path='/driver' element={
-                <ProtectedRoute>
                   <DriverPannle />
-                </ProtectedRoute>
               }>
                 <Route index element={<DriverDashboard />} />
                 <Route path='ridehistory' element={<RideHistory />} />

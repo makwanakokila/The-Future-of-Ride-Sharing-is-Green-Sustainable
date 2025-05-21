@@ -11,6 +11,7 @@ const OTPVerification = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""))
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
+  const [password, setPassword] = useState('');
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ const OTPVerification = () => {
 
   const handleResend = async () => {
     try {
-      await axios.post("https://idharudhar-backend-1.onrender.com/api/auth/send-otp", { email })
+      await axios.post("https://idharudhar-backend-2.onrender.com/api/auth/send-otp", { email })
       setTimer(30)
       setShowResend(false)
     } catch (err) {
@@ -67,7 +68,7 @@ const OTPVerification = () => {
     setError("")
 
     try {
-      const response = await axios.post("https://idharudhar-backend.onrender.com/api/auth/verify-otp", {
+      const response = await axios.post("https://idharudhar-backend-2.onrender.com/api/auth/verify-otp", {
         email,
         otp: enteredOtp,
       })
@@ -75,16 +76,14 @@ const OTPVerification = () => {
       if (response.status === 200) {
         // For demo purposes, we'll create a user object
         const userData = {
-          name: email.split("@")[0], // Use part of email as name for demo
-          email: email,
-          // Add other user data as needed
+          name: email.split("@")[0],
+          email,
+          password,
         }
 
-        // Login the user
-        login(userData)
-
-        // Navigate to home page
-        navigate("/")
+        localStorage.setItem('idharUdharUser', JSON.stringify(userData)); // Save user first
+        login(userData); // Now login will find user in localStorage
+        navigate("/");
       } else {
         setError(response.data.message || "Invalid OTP.")
       }

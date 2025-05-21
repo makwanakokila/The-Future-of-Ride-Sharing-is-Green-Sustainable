@@ -1,6 +1,6 @@
 import React from 'react'
 import DashboardNav from './Components/DashboardNav'
-import { useGlobalContext } from '../../contexts/GlobalContext';
+import { useGlobalContext } from './../../contexts/GlobalContext';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export default function DriverPanel() {

@@ -329,7 +329,7 @@ export default function RideHistory() {
                                                 <i className={`fas ${ride.cancelled ? 'fa-times' : 'fa-check'}`}></i>
                                             </div>
                                             <div>
-                                                <h4 className='dark:text-white text-gray-800 font-medium'>{ride.customer}</h4>
+                                                <h4 className='dark:text-white text-gray-800 font-medium text-start'>{ride.customer}</h4>
                                                 <p className='dark:text-gray-400 text-gray-600 text-sm'>{ride.time}</p>
                                             </div>
                                         </div>

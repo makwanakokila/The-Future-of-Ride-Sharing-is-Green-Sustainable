@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaPhone, FaLock, FaCar } from 'react-icons/fa'; // Import FaCar for driver
+import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaPhone, FaLock, FaCar, FaIdCard, FaFileAlt, FaMoneyBillWave, FaMapMarkerAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
@@ -8,7 +8,7 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [error, setError] = useState("");
-    const [userType, setUserType] = useState('normal'); // Default to normal user
+    const [userType, setUserType] = useState('normal');
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -16,10 +16,27 @@ const SignUp = () => {
         phone: '',
         password: '',
         confirmPassword: '',
+        // Driver-specific fields
+        vehicleNumber: '',
+        vehicleModel: '',
+        operatingLocation: '',
+        monthlyEarningGoal: '',
+        licenseNumber: '',
+        aadhaarNumber: '',
+        panNumber: '',
+        // Files will be handled separately
+        licensePhoto: null,
+        aadhaarPhoto: null,
+        panPhoto: null,
+        vehiclePhoto: null
     });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.files[0] });
     };
 
     const handleUserTypeChange = (e) => {
@@ -53,19 +70,51 @@ const SignUp = () => {
             return;
         }
 
+        // Additional validation for drivers
+        if (userType === 'driver') {
+            const { vehicleNumber, vehicleModel, operatingLocation, licenseNumber, aadhaarNumber, panNumber } = formData;
+            
+            if (!vehicleNumber || !vehicleModel || !operatingLocation || !licenseNumber || !aadhaarNumber || !panNumber) {
+                setError("All driver fields are required");
+                return;
+            }
+        }
+
         try {
-            //  Use a dynamic URL based on userType
-            const baseUrl = 'https://idharudhar-backend-1.onrender.com/api/auth';
+            // Create FormData for file uploads
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', fullName);
+            formDataToSend.append('email', email);
+            formDataToSend.append('phone', phone);
+            formDataToSend.append('password', password);
+            formDataToSend.append('confirmPassword', confirmPassword);
+            formDataToSend.append('userType', userType);
+
+            if (userType === 'driver') {
+                formDataToSend.append('vehicleNumber', formData.vehicleNumber);
+                formDataToSend.append('vehicleModel', formData.vehicleModel);
+                formDataToSend.append('operatingLocation', formData.operatingLocation);
+                formDataToSend.append('monthlyEarningGoal', formData.monthlyEarningGoal);
+                formDataToSend.append('licenseNumber', formData.licenseNumber);
+                formDataToSend.append('aadhaarNumber', formData.aadhaarNumber);
+                formDataToSend.append('panNumber', formData.panNumber);
+                
+                if (formData.licensePhoto) formDataToSend.append('licensePhoto', formData.licensePhoto);
+                if (formData.aadhaarPhoto) formDataToSend.append('aadhaarPhoto', formData.aadhaarPhoto);
+                if (formData.panPhoto) formDataToSend.append('panPhoto', formData.panPhoto);
+                if (formData.vehiclePhoto) formDataToSend.append('vehiclePhoto', formData.vehiclePhoto);
+            }
+
+             //  Use a dynamic URL based on userType
+            const baseUrl = 'https://idharudhar-backend-2.onrender.com/api/auth';
             const signupUrl = userType === 'driver' ? `${baseUrl}/driver/signup` : `${baseUrl}/signup`;
             const otpUrl = userType === 'driver' ? `${baseUrl}/driver/send-otp` : `${baseUrl}/send-otp`;
 
-            const response = await axios.post(signupUrl, {
-                name: fullName,
-                email,
-                phone,
-                password,
-                confirmPassword,
-                userType: userType, // Include userType in the request
+
+            const response = await axios.post(signupUrl, formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
             await axios.post(otpUrl, { email });
@@ -74,9 +123,8 @@ const SignUp = () => {
             console.log(response.data);
             setError("");
 
-            // Route user based on usertype after successful signup.
             if (userType === 'driver') {
-                navigate("/auth"); // Or "/driver/dashboard"  ,  decide where you want to send the driver
+                navigate("/auth");
             } else {
                 navigate("/otpverification", { state: { email } });
             }
@@ -98,7 +146,6 @@ const SignUp = () => {
                 </p>
 
                 <form onSubmit={handleSubmit}>
-                    {/* Error Message */}
                     {error && (
                         <p className="text-red-500 text-sm text-center mb-4">{error}</p>
                     )}
@@ -128,13 +175,12 @@ const SignUp = () => {
                                     onChange={handleUserTypeChange}
                                 />
                                 <span className="ml-2 text-gray-700 dark:text-gray-200 flex items-center">
-                                    <FaCar className="mr-1" /> {/* Driver Icon */}
+                                    <FaCar className="mr-1" />
                                     Driver
                                 </span>
                             </label>
                         </div>
                     </div>
-
 
                     {/* Full Name */}
                     <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Full Name</label>
@@ -147,6 +193,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             placeholder="John Doe"
                             className="w-full bg-transparent text-black dark:text-white outline-none"
+                            required
                         />
                     </div>
 
@@ -161,6 +208,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             placeholder="john@example.com"
                             className="w-full bg-transparent text-black dark:text-white outline-none"
+                            required
                         />
                     </div>
 
@@ -175,6 +223,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             placeholder="+1 (555) 123-4567"
                             className="w-full bg-transparent text-black dark:text-white outline-none"
+                            required
                         />
                     </div>
 
@@ -189,6 +238,7 @@ const SignUp = () => {
                             onChange={handleChange}
                             placeholder="••••••••"
                             className="w-full bg-transparent text-black dark:text-white outline-none"
+                            required
                         />
                         <button type="button" onClick={() => setShowPassword(!showPassword)}>
                             {showPassword ? <FaEyeSlash className="text-gray-500 dark:text-gray-300" /> : <FaEye className="text-gray-500 dark:text-gray-300" />}
@@ -206,11 +256,197 @@ const SignUp = () => {
                             onChange={handleChange}
                             placeholder="••••••••"
                             className="w-full bg-transparent text-black dark:text-white outline-none"
+                            required
                         />
                         <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                             {showConfirmPassword ? <FaEyeSlash className="text-gray-500 dark:text-gray-300" /> : <FaEye className="text-gray-500 dark:text-gray-300" />}
                         </button>
                     </div>
+
+                    {/* Driver-specific fields */}
+                    {userType === 'driver' && (
+                        <>
+                            <div className="border-t border-gray-300 dark:border-gray-600 my-4 pt-4">
+                                <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4 flex items-center">
+                                    <FaCar className="mr-2" /> Driver Information
+                                </h3>
+
+                                {/* Vehicle Number */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Vehicle Number</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaCar className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="vehicleNumber"
+                                        value={formData.vehicleNumber}
+                                        onChange={handleChange}
+                                        placeholder="DL 01 AB 1234"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* Vehicle Model */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Vehicle Model</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaCar className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="vehicleModel"
+                                        value={formData.vehicleModel}
+                                        onChange={handleChange}
+                                        placeholder="Toyota Prius 2020"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* Operating Location */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Operating Location</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaMapMarkerAlt className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="operatingLocation"
+                                        value={formData.operatingLocation}
+                                        onChange={handleChange}
+                                        placeholder="New Delhi, India"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* Monthly Earning Goal */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Monthly Earning Goal (₹)</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaMoneyBillWave className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="number"
+                                        name="monthlyEarningGoal"
+                                        value={formData.monthlyEarningGoal}
+                                        onChange={handleChange}
+                                        placeholder="50000"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* License Number */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Driver's License Number</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaIdCard className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="licenseNumber"
+                                        value={formData.licenseNumber}
+                                        onChange={handleChange}
+                                        placeholder="DL-1234567890123"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* License Photo Upload */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Driver's License Photo</label>
+                                <div className="mb-4">
+                                    <input
+                                        type="file"
+                                        name="licensePhoto"
+                                        onChange={handleFileChange}
+                                        className="block w-full text-sm text-gray-500
+                                          file:mr-4 file:py-2 file:px-4
+                                          file:rounded-md file:border-0
+                                          file:text-sm file:font-semibold
+                                          file:bg-green-50 file:text-green-700
+                                          hover:file:bg-green-100
+                                          dark:file:bg-green-900 dark:file:text-green-100
+                                          dark:hover:file:bg-green-800"
+                                        accept="image/*"
+                                    />
+                                </div>
+
+                                {/* Aadhaar Number */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Aadhaar Number</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaIdCard className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="aadhaarNumber"
+                                        value={formData.aadhaarNumber}
+                                        onChange={handleChange}
+                                        placeholder="1234 5678 9012"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* Aadhaar Photo Upload */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Aadhaar Card Photo</label>
+                                <div className="mb-4">
+                                    <input
+                                        type="file"
+                                        name="aadhaarPhoto"
+                                        onChange={handleFileChange}
+                                        className="block w-full text-sm text-gray-500
+                                          file:mr-4 file:py-2 file:px-4
+                                          file:rounded-md file:border-0
+                                          file:text-sm file:font-semibold
+                                          file:bg-green-50 file:text-green-700
+                                          hover:file:bg-green-100
+                                          dark:file:bg-green-900 dark:file:text-green-100
+                                          dark:hover:file:bg-green-800"
+                                        accept="image/*"
+                                    />
+                                </div>
+
+                                {/* PAN Number */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">PAN Number</label>
+                                <div className="flex items-center mb-4 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-white dark:bg-black">
+                                    <FaFileAlt className="text-gray-400 dark:text-gray-300 mr-2" />
+                                    <input
+                                        type="text"
+                                        name="panNumber"
+                                        value={formData.panNumber}
+                                        onChange={handleChange}
+                                        placeholder="ABCDE1234F"
+                                        className="w-full bg-transparent text-black dark:text-white outline-none"
+                                    />
+                                </div>
+
+                                {/* PAN Photo Upload */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">PAN Card Photo</label>
+                                <div className="mb-4">
+                                    <input
+                                        type="file"
+                                        name="panPhoto"
+                                        onChange={handleFileChange}
+                                        className="block w-full text-sm text-gray-500
+                                          file:mr-4 file:py-2 file:px-4
+                                          file:rounded-md file:border-0
+                                          file:text-sm file:font-semibold
+                                          file:bg-green-50 file:text-green-700
+                                          hover:file:bg-green-100
+                                          dark:file:bg-green-900 dark:file:text-green-100
+                                          dark:hover:file:bg-green-800"
+                                        accept="image/*"
+                                    />
+                                </div>
+
+                                {/* Vehicle Photo Upload */}
+                                <label className="block mb-2 text-sm text-gray-700 dark:text-gray-200 text-start">Vehicle Photo</label>
+                                <div className="mb-4">
+                                    <input
+                                        type="file"
+                                        name="vehiclePhoto"
+                                        onChange={handleFileChange}
+                                        className="block w-full text-sm text-gray-500
+                                          file:mr-4 file:py-2 file:px-4
+                                          file:rounded-md file:border-0
+                                          file:text-sm file:font-semibold
+                                          file:bg-green-50 file:text-green-700
+                                          hover:file:bg-green-100
+                                          dark:file:bg-green-900 dark:file:text-green-100
+                                          dark:hover:file:bg-green-800"
+                                        accept="image/*"
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
 
                     {/* Terms */}
                     <div className="flex items-start mb-6">

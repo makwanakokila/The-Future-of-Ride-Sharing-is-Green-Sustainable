@@ -3,8 +3,7 @@ import { useGlobalContext } from '../../../contexts/GlobalContext';
 import { Link } from 'react-router';
 
 export default function DashboardNav() {
-  const { Isonline, ToggleOnline, ToggleSidebar, user } = useGlobalContext();
-  const [User, setUser] = useState(user);
+  const { Isonline, ToggleOnline, ToggleSidebar} = useGlobalContext();
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([
     { id: 1, message: "You received a new ride request", time: "5 mins ago", read: false },
@@ -47,12 +46,6 @@ export default function DashboardNav() {
   const Acceptride = ()=>{
     setShowRideRequest(false)
   }
-
-
-
-
-
-
 
   return (
         <div className='w-full h-[8%] p-1 bg-gray-200/10 flex justify-between items-center px-2 py-2 rounded-lg md:rounded-none relative'>
@@ -132,7 +125,7 @@ export default function DashboardNav() {
         <Link to='profile'>
           <div className="profile h-11 rounded-md flex items-center hover:bg-gray-500/30 transition-all duration-200 p-1">
             <div className="ProfileName w-17 dark:text-white flex flex-col items-start p-1">
-              <span className='text-sm font-medium'>{user.name}</span>
+              <span className='text-sm font-medium'>John Doe</span>
               <span className='text-xs text-gray-400'>4.8 <i className="fas fa-star"></i></span>
             </div>
             <div className="ProfileIcon h-10 w-8 rounded-lg bg-gray-400/60 text-white flex items-center justify-center">
