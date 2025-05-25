@@ -134,7 +134,7 @@ export default function App() {
      <div className="relative min-h-screen flex justify-center items-start pt-20 pb-10 bg-[#166534] dark:bg-[#111827] overflow-hidden "> {/* Removed conflicting classes */}
       {/* Background Image Layer with specific style properties */}
       <div
-        className="absolute inset-0 bg-cover bg-center z-0 mt-22 ml-30 opacity-9"
+        className="absolute inset-0 bg-cover bg-center z-0 mt-16 ml-30 opacity-9 "
        style={{
           backgroundImage: "url('/images/signup-costomer-img.png')", // Updated image filename
           backgroundPosition: "center", // Added: Centers the image
@@ -402,13 +402,16 @@ export default function App() {
 
           {/* Submit */}
           <button
-            type="submit"
-            className={`w-full py-3 rounded-md text-lg font-medium shadow-lg transition-colors duration-200
-              ${!otpVerified ? 'bg-green-600 dark:bg-gray-600 cursor-not-allowed text-white opacity-70' : 'bg-green-600 hover:bg-green-700 text-white '}`}
-            disabled={!otpVerified}
-          >
-            Create Account
-          </button>
+  type="submit"
+  className={`relative w-full py-3 rounded-md text-lg font-medium shadow-lg transition-colors duration-200 group
+    ${!otpVerified ? 'bg-[#166534] cursor-not-allowed text-white ' : 'bg-[#166534] text-white'}`}
+  disabled={!otpVerified}
+>
+  {/* Overlay for hover effect */}
+  <span className="absolute inset-0 bg-gradient-to-r from-[#114d2a] to-[#166534] transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100 rounded-md z-0"></span>
+  {/* Button text */}
+  <span className="relative z-10">Create Account</span>
+</button>
 
           {/* Sign In */}
           <p className="text-center text-gray-400 text-sm mt-6">
