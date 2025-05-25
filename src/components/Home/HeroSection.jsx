@@ -15,13 +15,10 @@ const HeroSection = () => {
 
   const handleFindRides = () => {
     if (!user) {
-      // If user is not logged in, show alert and redirect to signup
       alert("Please signup or login first to book a ride")
       navigate("/signup")
       return
     }
-
-    // If user is logged in and form is valid, proceed with booking
     if (!isDisabled) {
       navigate(`/book?pickup=${encodeURIComponent(pickup)}&dropoff=${encodeURIComponent(dropoff)}`)
     }
@@ -33,23 +30,24 @@ const HeroSection = () => {
       navigate("/auth/signup")
       return
     }
-
     navigate("/book/premium")
   }
 
   return (
-    <section className="bg-green-800 text-white pt-16 pb-12 md:py-20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="bg-[#166534] text-white overflow-hidden">
+  <div className="container mx-auto px-6 sm:px-10 md:px-16 lg:px-24 py-16 sm:py-20 md:py-24 lg:py-28">
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* LEFT SIDE - Text and Form */}
-          <div className="max-w-xl text-left">
+          {/* w-full ensures it takes full width on small screens, lg:max-w-xl limits on large */}
+          <div className="w-full lg:max-w-xl text-left">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               <span className="block text-white">The Future of</span>
               <span className="block text-green-300">Ride Sharing</span>
               <span className="block text-white">is Green &</span>
               <span className="block text-white">Sustainable</span>
             </h1>
-            <p className="text-lg mb-8 max-w-xl">
+            <p className="text-lg mb-8 w-full lg:max-w-xl"> 
               Experience seamless, eco-friendly rides at your fingertips. Idhar-Udhar connects you with reliable drivers
               in over 500+ cities nationwide.
             </p>
@@ -101,7 +99,9 @@ const HeroSection = () => {
               <img src="/images/home_page1.png" alt="Luxury car" className="object-cover w-full h-[600px]" />
               <div className="absolute inset-0 bg-gradient-to-r from-green-800/40 to-transparent"></div>
 
-              <div className="absolute bottom-4 left-4 p-4 text-white w-[550px]">
+              {/* Ensure this div and its content are fully responsive */}
+              {/* Uses inset-x-4 (left-4 and right-4) to provide internal padding on the image */}
+              <div className="absolute bottom-4 inset-x-4 p-4 text-white max-w-md mx-auto"> 
                 <div className="mb-3">
                   <div className="flex items-center mb-1">
                     <div className="bg-green-500 rounded-full w-10 h-10 flex items-center justify-center text-sm font-bold mr-4">
@@ -134,4 +134,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default HeroSection;

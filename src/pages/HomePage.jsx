@@ -10,7 +10,7 @@ import DownloadAppSection from '../components/Home/DownloadAppSection';
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <div className="w-full min-h-screen">
     <HeroSection/>
     <ServiceSection/>
     <FeaturesSection/>

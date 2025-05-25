@@ -56,7 +56,7 @@ const LoginForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
       <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md dark:bg-[#0F141B]">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2 dark:text-white">Sign in to GreenGlide</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-2 dark:text-white">Sign in to IdharUdhar</h2>
         <p className="text-center text-gray-500 text-sm mb-6 dark:text-gray-400">
           Enter your email or phone to receive an OTP
         </p>

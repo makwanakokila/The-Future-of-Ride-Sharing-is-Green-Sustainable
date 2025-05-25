@@ -9,6 +9,7 @@ import Logo from "./Logo"
 
 const Header = () => {
   const { isAuthenticated } = useAuth()
+  console.log("Header: isAuthenticated =", isAuthenticated);
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -17,6 +18,7 @@ const Header = () => {
 
   const location = useLocation()
 
+  
   // Auto‐close dropdowns & mobile menu on any route change
   useEffect(() => {
     setServicesOpen(false)
@@ -51,7 +53,7 @@ const Header = () => {
     <>
       <header className="w-full">
         {/* Top bar */}
-        <div className="bg-green-700 text-white py-2 px-4 fixed top-0 left-0 w-full z-50 flex justify-between items-center">
+        <div className="bg-[#166534] text-white py-2 px-4 fixed top-0 left-0 w-full z-50 flex justify-between items-center">
           <div className="flex items-center space-x-6">
             <a href="mailto:support@idharudhar.com" className="text-sm flex items-center hover:text-green-200 transition-colors">
               <Mail className="mr-2" size={16} />
@@ -64,7 +66,15 @@ const Header = () => {
             </a>
           </div>
           <div className="flex items-center space-x-4">
-            {/* social icons... */}
+            <a href="#" aria-label="Instagram" className="text-white hover:text-green-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook" className="text-white hover:text-green-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" className="text-white hover:text-green-200 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
           </div>
         </div>
 
@@ -100,19 +110,19 @@ const Header = () => {
                     servicesOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <Link to="/carrides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
+                  <Link to="/Services/carrides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                     Car Rides
                   </Link>
-                  <Link to="/rentals" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
+                  <Link to="/Services/rentals" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                     Rentals
                   </Link>
-                  <Link to="/Auto_rides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
+                  <Link to="/Services/Auto_rides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                     Auto Rides
                   </Link>
-                  <Link to="/Bike_rides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
+                  <Link to="/Services/Bike_rides" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                     Bike Rides
                   </Link>
-                  <Link to="/Intercity" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
+                  <Link to="/Services/Intercity" className="block px-4 py-2 hover:bg-green-200 dark:hover:bg-green-700 transition-colors">
                     Intercity
                   </Link>
                 </div>
@@ -266,4 +276,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

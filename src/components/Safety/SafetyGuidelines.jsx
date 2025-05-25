@@ -40,7 +40,7 @@ const SafetyGuidelines = () => {
     {
       title: "Maintain Your Vehicle",
       description:
-        "Ensure your vehicle is regularly serviced and meets all safety standards required by GreenGlide.",
+        "Ensure your vehicle is regularly serviced and meets all safety standards required by IdharUdhar.",
     },
     {
       title: "Follow Traffic Rules",

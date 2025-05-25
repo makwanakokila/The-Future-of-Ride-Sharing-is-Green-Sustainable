@@ -10,7 +10,7 @@ const blogs = [
   {
     id: 2,
     title: 'Understanding Our Driver Verification Process',
-    desc: 'Dive deep into how GreenGlide ensures that only qualified drivers join our platform.',
+    desc: 'Dive deep into how IdharUdhar ensures that only qualified drivers join our platform.',
     image: 'blog2.png',
   },
   {

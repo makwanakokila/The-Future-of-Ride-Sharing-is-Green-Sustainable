@@ -52,16 +52,17 @@ function App() {
   }, [user, navigate]);
 
   return (
-    <div className="App">
+    <div className="App  w-full max-w-full overflow-x-hidden">
+      
       <Layout>
         <Routes>
           {/* User Routes */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/carrides" element={<CarRides />} />
-          <Route path="/rentals" element={<Rentals />} />
-          <Route path="/Auto_rides" element={<Auto_Rides />} />
-          <Route path="/Bike_rides" element={<Bike_Rides />} />
-          <Route path="/Intercity" element={<Intercity />} />
+          <Route path="/Services/carrides" element={<CarRides />} />
+          <Route path="/Services/rentals" element={<Rentals />} />
+          <Route path="/Services/Auto_rides" element={<Auto_Rides />} />
+          <Route path="/Services/Bike_rides" element={<Bike_Rides />} />
+          <Route path="/Services/Intercity" element={<Intercity />} />
           <Route path="/Book_ride" element={<Book_Ride />} />
           <Route path="/about" element={<Aboutpage />} />
           <Route path="/allcities" element={<Allcities />} />
@@ -79,7 +80,7 @@ function App() {
           <Route path="/rating" element={<RideCompleted />} />
 
          
-
+          
          {/* Driver side  */}
               {/* Protected driver routes */}
               <Route path='/driver' element={

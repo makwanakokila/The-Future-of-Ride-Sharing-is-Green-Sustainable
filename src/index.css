@@ -36,6 +36,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  
+  width: 100%;
+  overflow-x: hidden;
+
+
 }
 
 code {
@@ -50,4 +55,11 @@ code {
   .gradient-dark {
     background: linear-gradient(to bottom, rgba(38, 38, 38, 0.1), rgb(0, 0, 0));
 }
+}
+
+
+@media (max-width: 840px) {
+  body {
+    min-width: 850px;
+  }
 }

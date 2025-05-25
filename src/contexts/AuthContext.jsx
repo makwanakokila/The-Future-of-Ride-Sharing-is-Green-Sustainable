@@ -1,55 +1,51 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// contexts/AuthContext.jsx
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Initialize user from localStorage on component mount
   useEffect(() => {
     const storedUser = localStorage.getItem('idharUdharUser');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        setIsAuthenticated(true);
+      } catch (e) {
+        console.error("Failed to parse user from localStorage", e);
+        localStorage.removeItem('idharUdharUser'); // Clear invalid data
+      }
     }
-    setLoading(false);
   }, []);
 
   const login = (userData) => {
-    const storedUser = localStorage.getItem('idharUdharUser');
-    if (!storedUser) {
-      alert('No user found. Please sign up.');
-      return;
-    }
-
-    const parsedUser = JSON.parse(storedUser);
-    console.log(parsedUser)
-
-    if (userData.email === parsedUser.email && userData.password === parsedUser.password) {
-      setUser(parsedUser);
-      navigate('/driver');
-    } else {
-      throw new Error('Invalid credentials');
-    }
-  };
-
-  const signup = (userData) => {
-    localStorage.setItem('idharUdharUser', JSON.stringify(userData));
-    navigate('/auth/login');
-  };
+  setUser(userData);
+  setIsAuthenticated(true);
+  console.log("AuthContext: User logged in:", userData);
+  console.log("AuthContext: isAuthenticated:", true);
+};
 
   const logout = () => {
-    localStorage.removeItem('idharUdharUser');
     setUser(null);
-    navigate('/');
+    setIsAuthenticated(false);
+    localStorage.removeItem('idharUdharUser');
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
