@@ -202,75 +202,101 @@ const Header = () => {
         </div>
 
         {/* Mobile menu */}
-        <div
-          className={`fixed inset-0 bg-gray-900 z-30 pt-28 px-4 transition-transform duration-300 ease-in-out ${
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          } md:hidden`}
-        >
-          <nav className="flex flex-col space-y-4">
-            <Link to="/" className="text-white text-lg font-medium py-2 border-b border-gray-700">
-              Home
-            </Link>
-            <details className="group">
-              <summary className="flex justify-between items-center text-white text-lg py-2 border-b border-gray-700 cursor-pointer">
-                Services
-                <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="mt-2 ml-4 space-y-2">
-                <Link to="/Bike_rides" className="block text-white py-2">Bike Ride</Link>
-                <Link to="/carrides" className="block text-white py-2">Car Ride</Link>
-                <Link to="/Auto_rides" className="block text-white py-2">Auto Ride</Link>
-                <Link to="/courier" className="block text-white py-2">Courier Delivery</Link>
-                <Link to="/food" className="block text-white py-2">Food Delivery</Link>
-                <Link to="/grocery" className="block text-white py-2">Grocery Delivery</Link>
-              </div>
-            </details>
-            <Link to="/safety" className="text-white text-lg font-medium py-2 border-b border-gray-700">
-              Safety
-            </Link>
-            <Link to="/about" className="text-white text-lg font-medium py-2 border-b border-gray-700">
-              About
-            </Link>
-            <details className="group">
-              <summary className="flex justify-between items-center text-white text-lg py-2 border-b border-gray-700 cursor-pointer">
-                Help
-                <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
-              </summary>
-              <div className="mt-2 ml-4 space-y-2">
-                <Link to="/faqs" className="block text-white py-2">FAQs</Link>
-                <Link to="/contact" className="block text-white py-2">Contact Us</Link>
-                <Link to="/support" className="block text-white py-2">Support</Link>
-              </div>
-            </details>
+      <div
+  className={`fixed inset-0 bg-white dark:bg-gray-900 z-30 pt-28 px-4 transition-transform duration-300 ease-in-out ${
+    mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+  } md:hidden`}
+>
+  <nav className="flex flex-col space-y-4">
+    <Link
+      to="/"
+      className="text-start text-black dark:text-white text-lg font-medium py-2 border-b border-gray-300 dark:border-gray-700"
+    >
+      Home
+    </Link>
 
-            <div className="flex space-x-4 py-4">
-              <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-700 transition-colors" aria-label={isDarkMode ? "Light mode" : "Dark mode"}>
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              <button className="p-2 rounded-full hover:bg-gray-700 transition-colors" aria-label="Change language">
-                <Globe size={20} />
-              </button>
-            </div>
+    <details className="group">
+      <summary className="text-start flex justify-between items-center text-black dark:text-white text-lg py-2 border-b border-gray-300 dark:border-gray-700 cursor-pointer">
+        Services
+        <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="mt-2 ml-4 space-y-2">
+        <Link to="/Services/carrides" className="block text-start text-black dark:text-white py-2">Car Ride</Link>
+        <Link to="/Services/rentals" className="block text-start text-black dark:text-white py-2">Rentals</Link>
+        <Link to="/Services/Auto_rides" className="block text-start text-black dark:text-white py-2">Auto Ride</Link>
+        <Link to="/Services/Bike_rides" className="block text-start text-black dark:text-white py-2">Bike Ride</Link>
+        <Link to="/Services/Intercity" className="block text-start text-black dark:text-white py-2">Intercity</Link>
+      </div>
+    </details>
 
-            <div className="flex flex-col space-y-3 mt-4">
-              {isAuthenticated ? (
-                <div className="flex items-center space-x-3">
-                  <UserAvatar size="lg" />
-                  <span className="text-white font-medium">My Profile</span>
-                </div>
-              ) : (
-                <>
-                  <Link to="/login" className="bg-white dark:bg-[#0F141B] text-black dark:text-white font-medium px-4 py-2 rounded-md border border-gray-300 transition-colors">
-                    Login
-                  </Link>
-                  <Link to="/signup" className="bg-green-500 text-white font-medium px-4 py-2 rounded-md hover:bg-green-600 transition-colors">
-                    Sign Up
-                  </Link>
-                </>
-              )}
-            </div>
-          </nav>
+    <Link
+      to="/safety"
+      className="text-start text-black dark:text-white text-lg font-medium py-2 border-b border-gray-300 dark:border-gray-700"
+    >
+      Safety
+    </Link>
+
+    <Link
+      to="/about"
+      className="text-start text-black dark:text-white text-lg font-medium py-2 border-b border-gray-300 dark:border-gray-700"
+    >
+      About
+    </Link>
+
+    <details className="group">
+      <summary className="text-start flex justify-between items-center text-black dark:text-white text-lg py-2 border-b border-gray-300 dark:border-gray-700 cursor-pointer">
+        Help
+        <ChevronDown size={16} className="transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="mt-2 ml-4 space-y-2">
+        <Link to="/faqs" className="block text-start text-black dark:text-white py-2">FAQs</Link>
+        <Link to="/contact" className="block text-start text-black dark:text-white py-2">Contact Us</Link>
+        <Link to="/support" className="block text-start text-black dark:text-white py-2">Support</Link>
+      </div>
+    </details>
+
+    <div className="flex space-x-4 py-4">
+      <button
+        onClick={toggleTheme}
+        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        aria-label={isDarkMode ? "Light mode" : "Dark mode"}
+      >
+        {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+      <button
+        className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        aria-label="Change language"
+      >
+        <Globe size={20} />
+      </button>
+    </div>
+
+    <div className="flex flex-col space-y-3 mt-4">
+      {isAuthenticated ? (
+        <div className="flex items-center space-x-3">
+          <UserAvatar size="lg" />
+          <span className="text-start text-black dark:text-white font-medium">My Profile</span>
         </div>
+      ) : (
+        <>
+          <Link
+            to="/login"
+            className="text-start bg-white dark:bg-[#0F141B] text-black dark:text-white font-medium px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 transition-colors"
+          >
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            className="text-start bg-green-500 text-white font-medium px-4 py-2 rounded-md hover:bg-green-600 transition-colors"
+          >
+            Sign Up
+          </Link>
+        </>
+      )}
+    </div>
+  </nav>
+</div>
+
       </header>
     </>
   )
