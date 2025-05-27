@@ -58,8 +58,13 @@ code {
 }
 
 
-@media (max-width: 840px) {
+/* @media (max-width: 840px) {
   body {
-    min-width: 850px;
+    min-width: 50px;
   }
+} */
+
+
+html, body {
+  overflow-x: hidden;
 }

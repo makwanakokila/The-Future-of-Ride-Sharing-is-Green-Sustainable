@@ -7,6 +7,9 @@ module.exports = {
   
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+      },
       keyframes: {
         glow: {
           '0%, 100%': { boxShadow: '0 0 0px 0 rgba(34,197,94,0.6)' },
